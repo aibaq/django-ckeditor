@@ -83,6 +83,8 @@ def get_media_url(path):
     """
     Determine system file's media URL.
     """
+    if getattr(settings, 'CKEDITOR_CONFIGS', {}).get('use_absolute_url'):
+        return f'{settings.SITE_URL}{storage.url(path)}'
     return storage.url(path)
 
 
